@@ -20,7 +20,9 @@ kubectl create secret generic jwt-secret --from-literal=JWT_KEY=secret
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/cloud/deploy.yaml
 ```
 
-### 4. Run skaffold
+## Run project in development mode
+
+### 1. Run skaffold
 
 ```
 skaffold dev
