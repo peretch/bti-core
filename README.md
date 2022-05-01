@@ -1,8 +1,8 @@
 # bti-common
 
-## This project is designed to be used as an implementation of microservices with nodejs, express and react.
+This project is an implementation of microservices with nodejs, express and react.
 
-## Installing and running the envoronment
+## Installation
 
 ### 1. Install skaffold globally
 
@@ -19,5 +19,3 @@ kubectl create secret generic jwt-secret --from-literal=JWT_KEY=secret
 ```
 skaffold dev
 ```
-
----
