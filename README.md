@@ -14,7 +14,13 @@ Find [here](https://skaffold.dev/docs/install/) the installer
 kubectl create secret generic jwt-secret --from-literal=JWT_KEY=secret
 ```
 
-### 3. Run skaffold
+### 3. Install ingress-controller
+
+```
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/cloud/deploy.yaml
+```
+
+### 4. Run skaffold
 
 ```
 skaffold dev
