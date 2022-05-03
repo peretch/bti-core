@@ -41,7 +41,12 @@ const Signup = () => {
       </div>
       {errors && errors.length > 0 && (
         <div className="alert alert-danger">
-          {errors.map((error) => error.message)}
+          <h4>Validation errors</h4>
+          <ul className="my-0">
+            {errors.map((error) => (
+              <li key={error.message}>{error.message}</li>
+            ))}
+          </ul>
         </div>
       )}
       <button className="btn btn-primary">Sign Up</button>
