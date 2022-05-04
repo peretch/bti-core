@@ -2,7 +2,6 @@ import axios from 'axios';
 import buildClient from '../api/build-client';
 
 const HomePage = ({ currentUser }) => {
-  console.log(currentUser);
   return (
     <div>
       <h1>Big Ticket Items!</h1>
@@ -21,7 +20,7 @@ const HomePage = ({ currentUser }) => {
 // ? If this component is loaded from navigation, this function will be executed on the application (For example, after login)
 HomePage.getInitialProps = async (context) => {
   const { data } = await buildClient(context)
-    .get()
+    .get('/api/users/currentuser')
     .catch((err) => {
       console.log(err.message);
     });

@@ -13,7 +13,7 @@ const buildClient = ({ req }) => {
     // We are on server
     return axios.create({
       baseURL:
-        'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local/api/users/currentuser',
+        'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local',
       headers: req.headers,
     });
   } else {
