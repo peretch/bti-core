@@ -5,11 +5,22 @@ const HomePage = ({ currentUser }) => {
   return (
     <div>
       <h1>Big Ticket Items!</h1>
-      <ul>
-        <li>
-          <a href="/auth/signup">Login</a>
-        </li>
-      </ul>
+      {currentUser ? (
+        <ul>
+          <li>
+            <a href="/">Sign Out</a>
+          </li>
+        </ul>
+      ) : (
+        <ul>
+          <li>
+            <a href="/auth/signup">Sign Up!</a>
+          </li>
+          <li>
+            <a href="/auth/signin">Sign In!</a>
+          </li>
+        </ul>
+      )}
     </div>
   );
 };
