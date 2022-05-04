@@ -3,22 +3,11 @@ import buildClient from '../api/build-client';
 const HomePage = ({ currentUser }) => {
   return (
     <div>
-      <h1>Big Ticket Items!</h1>
+      <h1>Dashboard</h1>
       {currentUser ? (
-        <ul>
-          <li>
-            <a href="/">Sign Out</a>
-          </li>
-        </ul>
+        <p>Hello {currentUser.email}!</p>
       ) : (
-        <ul>
-          <li>
-            <a href="/auth/signup">Sign Up!</a>
-          </li>
-          <li>
-            <a href="/auth/signin">Sign In!</a>
-          </li>
-        </ul>
+        <p>Welcome stranger!</p>
       )}
     </div>
   );
