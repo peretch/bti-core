@@ -19,11 +19,10 @@ const HomePage = ({ currentUser }) => {
 // ? This method is called from server only when user makes refresh, or clicking link, or typing Ultrasonic
 // ? If this component is loaded from navigation, this function will be executed on the application (For example, after login)
 HomePage.getInitialProps = async (context) => {
-  const { data } = await buildClient(context)
-    .get('/api/users/currentuser')
-    .catch((err) => {
-      console.log(err.message);
-    });
+  const client = buildClient(context);
+  const { data } = await client.get('/api/users/currentuser').catch((err) => {
+    console.log(err.message);
+  });
   return data;
 };
 
