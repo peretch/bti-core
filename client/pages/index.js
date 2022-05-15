@@ -2,7 +2,7 @@ import buildClient from '../api/build-client';
 
 const HomePage = ({ currentUser }) => {
   return (
-    <div>
+    <div className="container my-4">
       <h1>Dashboard</h1>
       {currentUser ? (
         <p>Hello {currentUser.email}!</p>
