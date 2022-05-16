@@ -2,7 +2,9 @@ import express from 'express';
 import 'express-async-errors';
 import { json } from 'body-parser';
 import cookieSession from 'cookie-session';
-import { errorHandler, NotFoundError } from '@peretch/bti-common';
+import { currentUser, errorHandler, NotFoundError } from '@peretch/bti-common';
+
+import { createTicketRouter } from './routes/new';
 
 const app = express();
 // Exrpess is aware that is behind a proxy (nginx ingress)
@@ -14,6 +16,9 @@ app.use(
     secure: process.env.NODE_ENV !== 'test',
   })
 );
+
+app.use(currentUser);
+app.use(createTicketRouter);
 
 app.all('*', async (req, res) => {
   throw new NotFoundError();

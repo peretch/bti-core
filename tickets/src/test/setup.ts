@@ -1,10 +1,10 @@
 import request from 'supertest';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
-import { app } from '../app';
+import jwt from 'jsonwebtoken';
 
 declare global {
-  var signin: () => Promise<string[]>;
+  var signin: () => string[];
 }
 
 // DEPRECATED
@@ -43,16 +43,41 @@ afterAll(async () => {
   await mongoose.connection.close();
 });
 
-global.signin = async () => {
-  const email = 'test@test.com';
-  const password = 'password';
+// Old signing funtion only works in auth service
+// This is because the route handler is present only in our auth service
+// global.signin = async () => {
+//   const email = 'test@test.com';
+//   const password = 'password';
 
-  const response = await request(app)
-    .post('/api/users/signup')
-    .send({ email, password })
-    .expect(201);
+//   const response = await request(app)
+//     .post('/api/users/signup')
+//     .send({ email, password })
+//     .expect(201);
 
-  const cookie = response.get('Set-Cookie');
+//   const cookie = response.get('Set-Cookie');
 
-  return cookie;
+//   return cookie;
+// };
+
+// In this implementation, we will focus in return a cookie exact like the
+// one returned when signin is success in auth servive.
+// We will create our custom with this function
+global.signin = () => {
+  // 1. build JWT payload { id, email }
+  const payload = { id: 'l213li21n3l9j', email: 'test@test.com' };
+
+  // 2. Create the JWT!
+  const token = jwt.sign(payload, process.env.JWT_KEY!);
+
+  // 3. Build session object {"jwt": MY_JWT }
+  const session = { jwt: token };
+
+  // 4. Turn session into Json
+  const sessionJson = JSON.stringify(session);
+
+  // 5. encode JSON as base64
+  const base64 = Buffer.from(sessionJson).toString('base64');
+
+  // 6. return string thats a cookie
+  return [`session=${base64}`];
 };
