@@ -23,7 +23,7 @@ const Signin = () => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form className="container my-4" onSubmit={onSubmit}>
       <h1>Sign In!</h1>
       <div className="form-group">
         <label>Email Address</label>
