@@ -6,6 +6,7 @@ import { currentUser, errorHandler, NotFoundError } from '@peretch/bti-common';
 
 import { createTicketRouter } from './routes/new';
 import { showTicketRouter } from './routes/show';
+import { indexTicketRouter } from './routes/index';
 
 const app = express();
 // Exrpess is aware that is behind a proxy (nginx ingress)
@@ -21,6 +22,7 @@ app.use(
 app.use(currentUser);
 app.use(createTicketRouter);
 app.use(showTicketRouter);
+app.use(indexTicketRouter);
 
 app.all('*', async (req, res) => {
   throw new NotFoundError();
