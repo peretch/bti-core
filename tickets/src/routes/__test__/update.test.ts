@@ -105,8 +105,8 @@ it('updates the tickewt when provided valid tickets', async () => {
   const { id: ticketId } = response.body;
 
   // Attemp to update ticket with valid parameters
-  const newTitle = 'Title';
-  const newPrice = 20;
+  const newTitle = 'Updated title';
+  const newPrice = 25;
   await request(app)
     .put(`/api/tickets/${ticketId}`)
     .set('Cookie', user)
