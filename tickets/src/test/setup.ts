@@ -63,8 +63,9 @@ afterAll(async () => {
 // one returned when signin is success in auth servive.
 // We will create our custom with this function
 global.signin = () => {
-  // 1. build JWT payload { id, email }
-  const payload = { id: 'l213li21n3l9j', email: 'test@test.com' };
+  // 1. build JWT payload { id, email } with random ID
+  const id = new mongoose.Types.ObjectId().toHexString();
+  const payload = { id, email: 'test@test.com' };
 
   // 2. Create the JWT!
   const token = jwt.sign(payload, process.env.JWT_KEY!);
